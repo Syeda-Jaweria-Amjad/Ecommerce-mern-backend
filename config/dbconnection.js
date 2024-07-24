@@ -1,12 +1,24 @@
-const mongoose = require("mongoose")
-const color = require("colors")
+const mongoose = require("mongoose");
+const colors = require("colors");
+const dotenv = require("dotenv");
 
-const dbconnection = ()=>{
+
+const mongodbAtlas_URI = process.env.MONGODB_URI || "mongodb+srv://syedjaweria2001:hsilDjMFXyXZeugl@envougethread-db.com53z8.mongodb.net/envougethread?retryWrites=true&w=majority"
+
+const dbconnection = async () => {
     try {
-        mongoose.connect(`mongodb://127.0.0.1:27017/envougethread`)
-        console.log(`Db connected`.bgBlue)
+        await mongoose.connect(mongodbAtlas_URI);
+        console.log(`Connected to MongoDB Atlas`.bgBlue);
     } catch (error) {
-        console.log("error in connection")
+        console.log(`Error in connection: ${error.message}`.bgRed);
     }
-}
-module.exports = dbconnection
+};
+
+module.exports = dbconnection;
+
+
+
+
+// syedjaweria2001
+// hsilDjMFXyXZeugl
+// mongodb+srv://syedjaweria2001:<password>@envougethread-db.com53z8.mongodb.net/?retryWrites=true&w=majority&appName=envougethread-db
